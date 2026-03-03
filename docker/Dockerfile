@@ -1,6 +1,6 @@
 # 1) deps: 의존성 설치만 (캐시 최적화)
 #FROM node:22.10.0-bookworm-slim AS deps
-FROM harbor.gk-msa.link:10443/dockerhub_proxy/node:22.10.0-bookworm-slim AS deps
+FROM harbor.gk-msa.link:10443/dockerhub_proxy/library/node:22.10.0-bookworm-slim AS deps
 WORKDIR /app
 
 # npm 버전 고정
@@ -13,7 +13,7 @@ RUN npm ci
 
 # 2) build: 소스 복사 후 빌드
 #FROM node:22.10.0-bookworm-slim AS build
-FROM harbor.gk-msa.link:10443/dockerhub_proxy/node:22.10.0-bookworm-slim AS build
+FROM harbor.gk-msa.link:10443/dockerhub_proxy/library/node:22.10.0-bookworm-slim AS build
 WORKDIR /app
 RUN npm install --global npm@11.1.13
 
@@ -24,7 +24,7 @@ RUN npm run build
 
 # 3) runtime: 배포용 최소 이미지 (devDependencies 제거)
 #FROM node:22.10.0-bookworm-slim AS runtime
-FROM harbor.gk-msa.link:10443/dockerhub_proxy/node:22.10.0-bookworm-slim AS runtime
+FROM harbor.gk-msa.link:10443/dockerhub_proxy/library/node:22.10.0-bookworm-slim AS runtime
 WORKDIR /app
 ENV NODE_ENV=prod
 RUN npm install --global npm@11.1.13
