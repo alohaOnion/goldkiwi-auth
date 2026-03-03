@@ -14,7 +14,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  IMAGE_NAME: be-node-auth
+  IMAGE_NAME: be-auth-node-22.10
   DOCKERFILE_PATH: ./docker/Dockerfile
   BUILD_CONTEXT: .
 
