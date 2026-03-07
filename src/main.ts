@@ -22,12 +22,13 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('GoldKiwi Auth API')
-    .setDescription('인증 API 문서')
+    .setDescription('인증 API 문서 - 로그인, 회원가입, 프로필, OAuth')
     .setVersion('1.0')
-    .addTag('auth')
+    .addBearerAuth({ type: 'http', scheme: 'bearer', bearerFormat: 'JWT' })
+    .addTag('auth', '인증 (로그인, 회원가입, 비밀번호, OAuth)')
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('docs', app, document);
 
   await app.listen(process.env.PORT ?? 3000);
 }
