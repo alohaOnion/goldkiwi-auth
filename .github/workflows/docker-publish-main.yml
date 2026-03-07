@@ -2,13 +2,13 @@ name: Docker Publish (Auth)
 
 on:
   push:
-    branches: [develop, main]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: production
+    environment: main
     permissions:
       contents: read
       packages: write
